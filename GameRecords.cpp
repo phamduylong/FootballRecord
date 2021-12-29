@@ -205,7 +205,10 @@ void GameRecords::run() {
 				addGame();
 				break;
 			case MODMATCH:
-
+				modifyGame();
+				break;
+			case DELETEMATCH:
+				deleteGame();
 				break;
 			case PRINTREPTEAM:
 				printByTeam();
