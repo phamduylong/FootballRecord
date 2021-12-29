@@ -7,7 +7,6 @@
 #include <vector>
 #include <algorithm>
 #include <iomanip>
-#include <limits>
 
 using namespace GameRecords::Container;
 
@@ -41,6 +40,12 @@ void GameRecords::printAllGames() {
 }
 
 void GameRecords::addGame() {
+	try {
+		readFromDatabase();
+	}
+	catch (std::exception& e) {
+		std::cout << "Error occured: " << e.what() << '\n';
+	}
 	FootballGame fg{};
 	std::cout << "Enter details of the game:\n";
 	fg.read();
@@ -154,12 +159,13 @@ void GameRecords::writeToDatabase() {
 }
 
 void GameRecords::readFromDatabase() {
+	db.clear();
 	std::ifstream ifile("records.txt");
 	if (!ifile.is_open()) throw(std::runtime_error("Unable to open database."));
 	std::string tmp;
 	while (std::getline(ifile, tmp)) {
 		std::stringstream sstmp(tmp);
-		FootballGame fg_tmp;
+		FootballGame fg_tmp{};
 		sstmp >> fg_tmp;
 		db.push_back(fg_tmp);
 	}
