@@ -9,7 +9,7 @@ namespace GameRecords {
 	namespace Container {
 		static std::vector<FootballGame> db;
 	}
-	enum {INIT = 1, SAVETOFILE, READFROMFILE, ADDMATCH, MODMATCH, PRINTREPTEAM, PRINTREPLOC, PRINTREPDEF, EXIT};
+	const enum {INIT = 1, SAVETOFILE, READFROMFILE, ADDMATCH, MODMATCH, DELETEMATCH, PRINTREPTEAM, PRINTREPLOC, PRINTREPDEF, EXIT};
 
 	void init();
 
