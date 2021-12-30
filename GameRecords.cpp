@@ -133,7 +133,7 @@ void GameRecords::printByLocation() {
 	}
 	std::sort(db.begin(), db.end(),
 		[](const FootballGame& fg1, const FootballGame& fg2) {
-			return fg1.getLocation() < fg2.getLocation();
+			return fg1.getHomeTeam() < fg2.getHomeTeam();
 		}
 	);
 	std::string location{};
