@@ -9,6 +9,7 @@
 #include "FootballGame.h"
 #ifndef GAMERECORDS_H
 #define GAMERECORDS_H
+#endif
 
 class GameRecords {
 
@@ -46,5 +47,5 @@ public:
 };
 
 
-#endif
+
 

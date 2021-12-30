@@ -1,6 +1,8 @@
 #pragma once
 #ifndef FOOTBALLGAME_H
 #define FOOTBALLGAME_H
+#endif
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -25,4 +27,3 @@ public:
 	friend std::ostream& operator << (std::ostream& os, const FootballGame& game);
 	friend std::istream& operator >> (std::istream& is, FootballGame& game);
 };
-#endif
