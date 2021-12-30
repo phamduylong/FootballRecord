@@ -1,11 +1,7 @@
 #pragma once
-#include <vector>
-#include <string>
 #include <fstream>
-#include <iostream>
 #include <sstream>
 #include <algorithm>
-#include <iomanip>
 #include "FootballGame.h"
 #ifndef GAMERECORDS_H
 #define GAMERECORDS_H
