@@ -19,7 +19,7 @@ void GameRecords::init() {
 	}
 }
 
-void GameRecords::printAllGames(){
+void GameRecords::printAllGames() {
 	try {
 		readFromDatabase();
 	}
@@ -140,11 +140,35 @@ void GameRecords::printByLocation() {
 void GameRecords::writeToFile() {
 	std::string filename{};
 	std::cout << "Enter filename:\n";
-
+	std::ofstream customofile(filename);
+	if (!customofile.is_open()) {
+		std::cout << "Unable to open file! Please try again!\n";
+		return;
+	}
+	customofile << "Home team,Away team,Home score,Away score,Location,Week\n";
+	for (const auto& it : db) {
+		customofile << it;
+	}
+	customofile.close();
 }
 
 void GameRecords::readFromFile() {
-
+	std::string filename{};
+	std::cout << "Enter filename:\nNOTE: File must be in csv format for the program to be able to read correctly";
+	db.clear();
+	std::ifstream customifile(filename);
+	if (!customifile.is_open()) {
+		std::cout << "Unable to open file! Please try again!\n";
+		return;
+	}
+	std::string tmp;
+	while (std::getline(customifile, tmp)) {
+		std::stringstream sstmp(tmp);
+		FootballGame fg_tmp{};
+		sstmp >> fg_tmp;
+		db.push_back(fg_tmp);
+	}
+	customifile.close();
 }
 
 void GameRecords::writeToDatabase() {
