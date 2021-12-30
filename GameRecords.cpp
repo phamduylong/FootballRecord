@@ -8,8 +8,6 @@
 #include <algorithm>
 #include <iomanip>
 
-using namespace GameRecords::Container;
-
 void GameRecords::init() {
 	db.clear();
 	try {
@@ -21,7 +19,7 @@ void GameRecords::init() {
 	}
 }
 
-void GameRecords::printAllGames() {
+void GameRecords::printAllGames(){
 	try {
 		readFromDatabase();
 	}
@@ -175,8 +173,8 @@ void GameRecords::readFromDatabase() {
 int GameRecords::takeInput() {
 	int choice{ 0 };
 	std::cout << "1. Initialize database\n2. Save records to file\n3. Read records from a file\n4. Add a match\n"
-		"5. Modify an existing match\n6. Print report of a team's results\n7. Print report of matches played at a specific location\n"
-		"8. Print all existing matches\n9. Exit program\n";
+		"5. Modify an existing match\n6. Delete a match\n7. Print report of a team's results\n8. Print report of matches played at a specific location\n"
+		"9. Print all existing matches\n10. Exit program\n";
 	std::cin >> choice;
 	char garbage_collector = std::getchar();
 	if (!std::cin) {

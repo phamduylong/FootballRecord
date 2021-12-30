@@ -1,3 +1,0 @@
-ManUtd,ManCity,3,2,OldTrafford,9
-TeamA,TeamB,1,0,Stadium,10
-Vietnam,Thailand,2,0,Singapore,4

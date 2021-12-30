@@ -1,6 +1,7 @@
 #include "FootballGame.h"
 #include "GameRecords.h"
 int main(int argc, char* argv[]) {
-	GameRecords::run();
+	GameRecords recordbook;
+	recordbook.run();
 	return 0;
 }
