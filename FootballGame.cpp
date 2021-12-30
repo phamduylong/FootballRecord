@@ -15,18 +15,18 @@ FootballGame::FootballGame(
 
 void FootballGame::read() {
 	char garbage_collector{};
-	std::cout << "Enter name of home team:" << std::endl;
+	std::cout << "Enter name of home team:\n";
 	std::getline(std::cin, home_team);
-	std::cout << "Enter name of away team:" << std::endl;
+	std::cout << "Enter name of away team:\n";
 	std::getline(std::cin, away_team);
-	std::cout << "Enter score of home team:" << std::endl;
+	std::cout << "Enter score of home team (Only numbers are accepted):\n";
 	std::cin >> home_score;
-	std::cout << "Enter score of away team:" << std::endl;
+	std::cout << "Enter score of away team (Only numbers are accepted):\n";
 	std::cin >> away_score;
 	garbage_collector = std::getchar();
-	std::cout << "Enter location of the match:" << std::endl;
+	std::cout << "Enter location of the match:\n";
 	std::getline(std::cin, location);
-	std::cout << "Enter week of the match (Only numbers are accepted):" << std::endl;
+	std::cout << "Enter week of the match (Only numbers are accepted):\n";
 	std::cin >> week;
 	garbage_collector = std::getchar();
 }
@@ -37,7 +37,7 @@ void FootballGame::print() const {
 		<< std::left << std::setw(COL_LEN) << away_score
 		<< std::left << std::setw(COL_LEN) << away_team 
 		<< std::left << std::setw(COL_LEN) << location 
-		<< std::left << std::setw(COL_LEN) << week << std::endl;
+		<< std::left << std::setw(COL_LEN) << week << '\n';
 }
 
 std::string FootballGame::getHomeTeam() const

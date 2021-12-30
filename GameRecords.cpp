@@ -26,6 +26,11 @@ void GameRecords::printAllGames() {
 	catch (std::exception& e) {
 		std::cout << "Error occured: " << e.what() << '\n';
 	}
+	std::sort(db.begin(), db.end(), 
+		[](const FootballGame& fg1, const FootballGame& fg2) { 
+			return fg1.getLocation() < fg2.getLocation(); 
+		}
+	);
 	std::cout << std::left << std::setw(COL_LEN) << "Home team"
 		<< std::left << std::setw(COL_LEN) << "Home score"
 		<< std::left << std::setw(COL_LEN) << "Away score"
@@ -97,6 +102,11 @@ void GameRecords::printByTeam() {
 	catch (std::exception& e) {
 		std::cout << "Error occured: " << e.what() << '\n';
 	}
+	std::sort(db.begin(), db.end(),
+		[](const FootballGame& fg1, const FootballGame& fg2) {
+			return fg1.getLocation() < fg2.getLocation();
+		}
+	);
 	std::string team{};
 	std::cout << "Enter name of the team:\n";
 	std::getline(std::cin, team);
@@ -121,6 +131,11 @@ void GameRecords::printByLocation() {
 	catch (std::exception& e) {
 		std::cout << "Error occured: " << e.what() << '\n';
 	}
+	std::sort(db.begin(), db.end(),
+		[](const FootballGame& fg1, const FootballGame& fg2) {
+			return fg1.getLocation() < fg2.getLocation();
+		}
+	);
 	std::string location{};
 	std::cout << "Enter location:\n";
 	std::getline(std::cin, location);
@@ -218,10 +233,10 @@ void GameRecords::run() {
 				init();
 				break;
 			case SAVETOFILE:
-
+				writeToFile();
 				break;
 			case READFROMFILE:
-
+				readFromFile();
 				break;
 			case ADDMATCH:
 				addGame();
