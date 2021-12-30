@@ -1,6 +1,4 @@
 #include "FootballGame.h"
-#include <vector>
-#include <iomanip>
 
 FootballGame::FootballGame(
 	const char* home_team_name, const char* away_team_name, 

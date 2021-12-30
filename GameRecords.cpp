@@ -1,9 +1,4 @@
 #include "GameRecords.h"
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <algorithm>
-#include <iomanip>
 
 void GameRecords::init() {
 	db.clear();
