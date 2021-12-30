@@ -32,7 +32,6 @@ void FootballGame::read() {
 }
 
 void FootballGame::print() const {
-	//std::cout << home_team + " " << home_score << " - " << away_score << " " << away_team << std::endl;
 	std::cout << std::left << std::setw(COL_LEN) << home_team
 		<< std::left << std::setw(COL_LEN) << home_score
 		<< std::left << std::setw(COL_LEN) << away_score
