@@ -141,6 +141,7 @@ void GameRecords::printByLocation() {
 void GameRecords::writeToFile() {
 	std::string filename{};
 	std::cout << "Enter filename:\n";
+	std::getline(std::cin, filename);
 	std::ofstream customofile(filename);
 	if (!customofile.is_open()) {
 		std::cout << "Unable to open file! Please try again!\n";
@@ -156,6 +157,7 @@ void GameRecords::writeToFile() {
 void GameRecords::readFromFile() {
 	std::string filename{};
 	std::cout << "Enter filename:\nNOTE: File must be in csv format for the program to be able to read correctly";
+	std::getline(std::cin, filename);
 	db.clear();
 	std::ifstream customifile(filename);
 	if (!customifile.is_open()) {
