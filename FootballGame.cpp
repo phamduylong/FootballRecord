@@ -70,6 +70,7 @@ std::ostream& operator<<(std::ostream& os, const FootballGame& game)
 	os << game.home_team + "," + game.away_team + ","
 		+ std::to_string(game.home_score) + "," + std::to_string(game.away_score) + "," 
 		+ game.location + "," + std::to_string(game.week) << '\n';
+	if (!os) throw std::runtime_error("Cannot write to file.");
 	return os;
 }
 
@@ -80,6 +81,10 @@ std::istream& operator>>(std::istream& is, FootballGame& game)
 	std::getline(is, line);
 	for (unsigned int i = 0; i < line.length(); ++i) {
 		if (line[i] == ',') comma_indexes.push_back(i);
+	}
+	
+	if (comma_indexes.size() != 5) {
+		throw std::runtime_error("Cannot read data due to incorrect file format!");
 	}
 
 	game.home_team = line.substr(0, comma_indexes[0]);
