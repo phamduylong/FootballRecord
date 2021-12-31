@@ -17,14 +17,23 @@ void FootballGame::read() {
 	std::getline(std::cin, away_team);
 	std::cout << "Enter score of home team (Only numbers are accepted):\n";
 	std::cin >> home_score;
+	if (!std::cin) {
+		throw std::runtime_error("Invalid input!");
+	}
 	std::cout << "Enter score of away team (Only numbers are accepted):\n";
 	std::cin >> away_score;
 	garbage_collector = std::getchar();
+	if (!std::cin) {
+		throw std::runtime_error("Invalid input!");
+	}
 	std::cout << "Enter location of the match:\n";
 	std::getline(std::cin, location);
 	std::cout << "Enter week of the match (Only numbers are accepted):\n";
 	std::cin >> week;
 	garbage_collector = std::getchar();
+	if (!std::cin) {
+		throw std::runtime_error("Invalid input!");
+	}
 }
 
 void FootballGame::print() const {

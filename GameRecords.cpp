@@ -37,15 +37,10 @@ void GameRecords::printAllGames() {
 void GameRecords::addGame() {
 	try {
 		readFromDatabase();
-	}
-	catch (std::exception& e) {
-		std::cout << "Error occured: " << e.what() << '\n';
-	}
-	FootballGame fg{};
-	std::cout << "Enter details of the game:\n";
-	fg.read();
-	db.push_back(fg);
-	try {
+		FootballGame fg{};
+		std::cout << "Enter details of the game:\n";
+		fg.read();
+		db.push_back(fg);
 		writeToDatabase();
 		std::cout << "Game added to record book!" << '\n';
 	}
@@ -58,33 +53,32 @@ void GameRecords::addGame() {
 void GameRecords::deleteGame() {
 	try {
 		readFromDatabase();
+		FootballGame fg{};
+		std::cout << "Enter details of the game. ";
+		fg.read();
+		auto it = std::find(db.begin(), db.end(), fg);
+		if (it == db.end()) {
+			std::cout << "Cannot find the game\n";
+		}
+		else {
+			db.erase(it);
+			writeToDatabase();
+			std::cout << "Game deleted\n";
+		}
 	}
 	catch (std::exception& e) {
 		std::cout << "Error occured: " << e.what() << '\n';
 	}
-	FootballGame fg{};
-	std::cout << "Enter details of the game. ";
-	fg.read();
-	auto it = std::find(db.begin(), db.end(), fg);
-	if (it == db.end()) {
-		std::cout << "Cannot find the game\n";
-	}
-	else {
-		db.erase(it);
-
-		try {
-			writeToDatabase();
-			std::cout << "Game deleted\n";
-		}
-		catch (std::exception& e) {
-			std::cout << "Error occured: " << e.what() << '\n';
-		}
-	}
 }
 
 void GameRecords::modifyGame() {
-	deleteGame();
-	addGame();
+	try {
+		deleteGame();
+		addGame();
+	}
+	catch (std::exception& e) {
+		std::cout << "Error occured: " << e.what() << '\n';
+	}
 }
 
 void GameRecords::printByTeam() {
