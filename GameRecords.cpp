@@ -152,6 +152,7 @@ void GameRecords::writeToFile() {
 		for (const auto& it : db) {
 			customofile << it;
 		}
+		std::cout << "Data written to file " + filename + "\n";
 		customofile.close();
 	}
 	catch (std::exception& e) {
@@ -177,6 +178,7 @@ void GameRecords::readFromFile() {
 			sstmp >> fg_tmp;
 			db.push_back(fg_tmp);
 		}
+		std::cout << "Data read from file " << filename << "\n";
 		customifile.close();
 	}
 	catch (std::exception& e) {
