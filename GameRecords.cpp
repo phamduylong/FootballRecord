@@ -162,7 +162,7 @@ void GameRecords::writeToFile() {
 void GameRecords::readFromFile() {
 	try {
 		std::string filename{};
-		std::cout << "Enter filename:\nNOTE: File must be in csv format for the program to be able to read correctly";
+		std::cout << "Enter filename:\nNOTE: File must be in csv format for the program to be able to read correctly\n";
 		std::getline(std::cin, filename);
 		db.clear();
 		std::ifstream customifile(filename);
