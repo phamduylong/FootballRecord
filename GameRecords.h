@@ -35,7 +35,7 @@ class GameRecords {
 
 	void readFromDatabase();
 
-	int takeInput();
+	int takeInput() const;
 
 public:
 

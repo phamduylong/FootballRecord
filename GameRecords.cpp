@@ -209,7 +209,7 @@ void GameRecords::readFromDatabase() {
 	ifile.close();
 }
 
-int GameRecords::takeInput() {
+int GameRecords::takeInput() const {
 	int choice{ 0 };
 	std::cout << "1. Initialize database\n2. Save records to file\n3. Read records from a file\n4. Add a match\n"
 		"5. Modify an existing match\n6. Delete a match\n7. Print report of a team's results\n8. Print report of matches played at a specific location\n"
