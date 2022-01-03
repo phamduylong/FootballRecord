@@ -2,22 +2,12 @@
 
 void GameRecords::init() {
 	db.clear();
-	try {
-		writeToDatabase();
-		std::cout << "Database cleared!\n";
-	}
-	catch (std::exception& e) {
-		std::cout << "Error occured: " << e.what() << '\n';
-	}
+	writeToDatabase();
+	std::cout << "Database cleared!\n";
 }
 
 void GameRecords::printAllGames() {
-	try {
-		readFromDatabase();
-	}
-	catch (std::exception& e) {
-		std::cout << "Error occured: " << e.what() << '\n';
-	}
+	readFromDatabase();
 	std::sort(db.begin(), db.end(), 
 		[](const FootballGame& fg1, const FootballGame& fg2) { 
 			return fg1.getLocation() < fg2.getLocation(); 
@@ -35,59 +25,40 @@ void GameRecords::printAllGames() {
 }
 
 void GameRecords::addGame() {
-	try {
-		readFromDatabase();
-		FootballGame fg{};
-		std::cout << "Enter details of the game:\n";
-		fg.read();
-		db.push_back(fg);
-		writeToDatabase();
-		std::cout << "Game added to record book!" << '\n';
-	}
-	catch (std::exception& e) {
-		std::cout << "Error occured: " << e.what() << '\n';
-	}
+	readFromDatabase();
+	FootballGame fg{};
+	std::cout << "Enter details of the game:\n";
+	fg.read();
+	db.push_back(fg);
+	writeToDatabase();
+	std::cout << "Game added to record book!" << '\n';
 }
 
 
 void GameRecords::deleteGame() {
-	try {
-		readFromDatabase();
-		FootballGame fg{};
-		std::cout << "Enter details of the game. ";
-		fg.read();
-		auto it = std::find(db.begin(), db.end(), fg);
-		if (it == db.end()) {
-			std::cout << "Cannot find the game\n";
-		}
-		else {
-			db.erase(it);
-			writeToDatabase();
-			std::cout << "Game deleted\n";
-		}
+	readFromDatabase();
+	FootballGame fg{};
+	std::cout << "Enter details of the game. ";
+	fg.read();
+	auto it = std::find(db.begin(), db.end(), fg);
+	if (it == db.end()) {
+		std::cout << "Cannot find the game\n";
 	}
-	catch (std::exception& e) {
-		std::cout << "Error occured: " << e.what() << '\n';
+	else {
+		db.erase(it);
+		writeToDatabase();
+		std::cout << "Game deleted\n";
 	}
+
 }
 
 void GameRecords::modifyGame() {
-	try {
-		deleteGame();
-		addGame();
-	}
-	catch (std::exception& e) {
-		std::cout << "Error occured: " << e.what() << '\n';
-	}
+	deleteGame();
+	addGame();
 }
 
 void GameRecords::printByTeam() {
-	try {
-		readFromDatabase();
-	}
-	catch (std::exception& e) {
-		std::cout << "Error occured: " << e.what() << '\n';
-	}
+	readFromDatabase();
 	std::sort(db.begin(), db.end(),
 		[](const FootballGame& fg1, const FootballGame& fg2) {
 			return fg1.getLocation() < fg2.getLocation();
@@ -111,12 +82,7 @@ void GameRecords::printByTeam() {
 }
 
 void GameRecords::printByLocation() {
-	try {
-		readFromDatabase();
-	}
-	catch (std::exception& e) {
-		std::cout << "Error occured: " << e.what() << '\n';
-	}
+	readFromDatabase();
 	std::sort(db.begin(), db.end(),
 		[](const FootballGame& fg1, const FootballGame& fg2) {
 			return fg1.getHomeTeam() < fg2.getHomeTeam();
@@ -139,51 +105,45 @@ void GameRecords::printByLocation() {
 }
 
 void GameRecords::writeToFile() {
-	try {
-		std::string filename{};
-		std::cout << "Enter filename:\n";
-		std::getline(std::cin, filename);
-		std::ofstream customofile(filename);
-		if (!customofile.is_open()) {
-			std::cout << "Unable to open file! Please try again!\n";
-			return;
-		}
-		customofile << "Home team,Away team,Home score,Away score,Location,Week\n";
-		for (const auto& it : db) {
-			customofile << it;
-		}
-		std::cout << "Data written to file " + filename + "\n";
-		customofile.close();
+
+	std::string filename{};
+	std::cout << "Enter filename:\n";
+	std::getline(std::cin, filename);
+	std::ofstream customofile(filename);
+	if (!customofile.is_open()) {
+		std::cout << "Unable to open file! Please try again!\n";
+		return;
 	}
-	catch (std::exception& e) {
-		std::cout << "Error occured: " << e.what() << '\n';
+	customofile << "Home team,Away team,Home score,Away score,Location,Week\n";
+	for (const auto& it : db) {
+		customofile << it;
 	}
+	std::cout << "Data written to file " + filename + "\n";
+	customofile.close();
+
 }
 
 void GameRecords::readFromFile() {
-	try {
-		std::string filename{};
-		std::cout << "Enter filename:\nNOTE: File must be in csv format for the program to be able to read correctly\n";
-		std::getline(std::cin, filename);
-		db.clear();
-		std::ifstream customifile(filename);
-		if (!customifile.is_open()) {
-			std::cout << "Unable to open file! Please try again!\n";
-			return;
-		}
-		std::string tmp;
-		while (std::getline(customifile, tmp)) {
-			std::stringstream sstmp(tmp);
-			FootballGame fg_tmp{};
-			sstmp >> fg_tmp;
-			db.push_back(fg_tmp);
-		}
-		std::cout << "Data read from file " << filename << "\n";
-		customifile.close();
+
+	std::string filename{};
+	std::cout << "Enter filename:\nNOTE: File must be in csv format for the program to be able to read correctly\n";
+	std::getline(std::cin, filename);
+	db.clear();
+	std::ifstream customifile(filename);
+	if (!customifile.is_open()) {
+		std::cout << "Unable to open file! Please try again!\n";
+		return;
 	}
-	catch (std::exception& e) {
-		std::cout << "Error occured: " << e.what() << '\n';
+	std::string tmp;
+	while (std::getline(customifile, tmp)) {
+		std::stringstream sstmp(tmp);
+		FootballGame fg_tmp{};
+		sstmp >> fg_tmp;
+		db.push_back(fg_tmp);
 	}
+	std::cout << "Data read from file " << filename << "\n";
+	customifile.close();
+
 }
 
 void GameRecords::writeToDatabase() {
@@ -217,7 +177,7 @@ int GameRecords::takeInput() const {
 	std::cin >> choice;
 	char garbage_collector = std::getchar();
 	if (!std::cin) {
-		throw(std::runtime_error("Invalid input!"));
+		throw(std::runtime_error("Input isn't a number. Please try again!"));
 	}
 	return choice;
 }
@@ -263,7 +223,6 @@ void GameRecords::run() {
 			default:
 				std::cout << "Please enter a number in the menu!\n";
 				break;
-
 			}
 		}
 		catch (std::exception& e) {
@@ -271,6 +230,7 @@ void GameRecords::run() {
 			cont = false;
 			std::cout << "Program terminated. Please rerun and enter valid input!";
 		}
+
 	}
 
 }
