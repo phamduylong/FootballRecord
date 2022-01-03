@@ -3,10 +3,7 @@
 
 
 int main(int argc, char* argv[]) {
-
-	GameRecords* recordbook = new GameRecords;
-	recordbook->run();
-	delete recordbook;
-
-	return 0;
+	GameRecords recordbook{};
+	recordbook.run();
+	return EXIT_SUCCESS;
 }
