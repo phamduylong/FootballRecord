@@ -58,8 +58,19 @@ void GameRecords::deleteGame() {
 }
 
 void GameRecords::modifyGame() {
-	deleteGame();
-	addGame();
+	readFromDatabase();
+	FootballGame query{};
+	query.read();
+	std::vector<FootballGame>::iterator it = std::find(db.begin(), db.end(), query);
+	if (it != db.end()) {
+		std::cout << "Game found! Please enter details of the new game:\n";
+		(*it).read();
+		std::cout << "Game modified\n";
+	}
+	else {
+		std::cout << "Game not found! Please try again\n";
+	}
+	writeToDatabase();
 }
 
 void GameRecords::printByTeam() {
