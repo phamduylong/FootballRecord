@@ -144,12 +144,12 @@ void GameRecords::readFromFile() {
 	std::string filename{};
 	std::cout << "Enter filename:\nNOTE: File must be in csv format for the program to be able to read correctly\n";
 	std::getline(std::cin, filename);
-	db.clear();
 	std::ifstream customifile(filename);
 	if (!customifile.is_open()) {
 		std::cout << "Unable to open file! Please try again!\n";
 		return;
 	}
+	db.clear();
 	std::string tmp;
 	while (std::getline(customifile, tmp)) {
 		std::stringstream sstmp(tmp);
@@ -157,6 +157,7 @@ void GameRecords::readFromFile() {
 		sstmp >> fg_tmp;
 		db.push_back(fg_tmp);
 	}
+	writeToDatabase();
 	std::cout << "Data read from file " << filename << "\n";
 	customifile.close();
 
