@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 #include <iomanip>
-constexpr int COL_LEN = 20;
+
 class FootballGame {
 	std::string home_team;
 	std::string away_team;
