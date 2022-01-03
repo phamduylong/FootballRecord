@@ -1,5 +1,5 @@
-# Library
-Library System written in C++
+# Football Match Record Book
+Written in C++
 
 <h1 align="center">Hi 👋, I'm Long</h1>
 <h3 align="center">An ordinary developer</h3>
@@ -21,7 +21,7 @@ Library System written in C++
 
 <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=phamduylong&show_icons=true&locale=en" alt="phamduylong" /></p>
 
-When the application starts, a number menu which contains functions pop up. User can choose operations from the menu and interact with the application. Program stores data in the file “records.txt”. Deleting the file will make the program crashes and possibly unexpected behaviors following the deletion. Most operations do have interactive to help user. Invalid input will lead directly to program crashing and unsaved data to be lost. The program will update data into the file right after each operation. 
+When the application starts, a number menu which contains functions pop up. User can choose operations from the menu and interact with the application. Program stores data in the file <em>records.txt</em>. Deleting the file will make the program crashes and possibly unexpected behaviors following the deletion. Most operations do have interactive to help user. Invalid input will lead directly to program crashing and unsaved data to be lost. The program will update data into the file right after each operation. 
 In order to use the project, please download all the files from project (.cpp and .h files if you're using any other IDE but Microsoft's Visual Studio) or clone it from GitHub. 
 If you are using JetBrains CLion, please move the file <em>records.txt</em> into <em>cmake-build-debug</em> folder of the project to prevent bugs.
 <br> The program has internal instructions itself, with a menu of functions and error messages if an error occured during the run. 
