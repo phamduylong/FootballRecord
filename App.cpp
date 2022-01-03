@@ -1,8 +1,7 @@
 #include "FootballGame.h"
 #include "GameRecords.h"
-#define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
-#include <crtdbg.h>
+
+constexpr int COL_LEN = 20;
 
 int main(int argc, char* argv[]) {
 
