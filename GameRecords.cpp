@@ -8,19 +8,24 @@ void GameRecords::init() {
 
 void GameRecords::printAllGames() {
 	readFromDatabase();
-	std::sort(db.begin(), db.end(), 
-		[](const FootballGame& fg1, const FootballGame& fg2) { 
-			return fg1.getLocation() < fg2.getLocation(); 
+	if (db.empty()) {
+		std::cout << "No games available in record book :( Please add some games and try again\n";
+	}
+	else {
+		std::sort(db.begin(), db.end(),
+			[](const FootballGame& fg1, const FootballGame& fg2) {
+				return fg1.getLocation() < fg2.getLocation();
+			}
+		);
+		std::cout << std::left << std::setw(COL_LEN) << "Home team"
+			<< std::left << std::setw(COL_LEN) << "Home score"
+			<< std::left << std::setw(COL_LEN) << "Away score"
+			<< std::left << std::setw(COL_LEN) << "Away team"
+			<< std::left << std::setw(COL_LEN) << "Location"
+			<< std::left << std::setw(COL_LEN) << "Week" << '\n';
+		for (auto const& it : db) {
+			it.print();
 		}
-	);
-	std::cout << std::left << std::setw(COL_LEN) << "Home team"
-		<< std::left << std::setw(COL_LEN) << "Home score"
-		<< std::left << std::setw(COL_LEN) << "Away score"
-		<< std::left << std::setw(COL_LEN) << "Away team" 
-		<< std::left << std::setw(COL_LEN) << "Location" 
-		<< std::left << std::setw(COL_LEN) << "Week" << '\n';
-	for (auto const& it : db) {
-		it.print();
 	}
 }
 
