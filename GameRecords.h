@@ -7,10 +7,13 @@
 #define GAMERECORDS_H
 #endif
 
+//storage class declaration
 class GameRecords {
 
+	//obj container 
 	std::vector<FootballGame> db;
 
+	//menu enum
 	enum { INIT = 1, SAVETOFILE, READFROMFILE, ADDMATCH, MODMATCH, DELETEMATCH, PRINTREPTEAM, PRINTREPLOC, PRINTREPDEF, EXIT };
 
 	void init();
