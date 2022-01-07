@@ -254,7 +254,7 @@ void GameRecords::run() {
 		catch (std::exception& e) {
 			std::cout << "Error occured: " << e.what() << '\n';
 			cont = false;
-			std::cout << "Program terminated. Please rerun and enter valid input!";
+			std::cout << "Program terminated due to error!";
 		}
 
 	}
