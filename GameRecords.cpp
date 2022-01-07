@@ -1,9 +1,18 @@
 #include "GameRecords.h"
 
 void GameRecords::init() {
-	db.clear();
-	writeToDatabase();
-	std::cout << "Database cleared!\n";
+	char conf{'n'};
+	std::cout << "You are about to delete all the games in the record book! Do you want to continue?(y/n)\n";
+	std::cin >> conf;
+	if (!std::cin || (conf != 'y' && conf != 'n')) throw std::runtime_error("Please enter either y or n!");
+	if (conf == 'y') {
+		db.clear();
+		writeToDatabase();
+		std::cout << "Database cleared!\n";
+	}
+	else if (conf == 'n') {
+		std::cout << "OK :)\n";
+	}
 }
 
 void GameRecords::printAllGames() {
@@ -47,12 +56,12 @@ void GameRecords::deleteGame() {
 	fg.read();
 	auto it = std::find(db.begin(), db.end(), fg);
 	if (it == db.end()) {
-		std::cout << "Cannot find the game\n";
+		std::cout << "Cannot find the game!\n";
 	}
 	else {
 		db.erase(it);
 		writeToDatabase();
-		std::cout << "Game deleted\n";
+		std::cout << "Game deleted from the record book!" << '\n';
 	}
 
 }
@@ -65,10 +74,10 @@ void GameRecords::modifyGame() {
 	if (it != db.end()) {
 		std::cout << "Game found! Please enter details of the new game:\n";
 		(*it).read();
-		std::cout << "Game modified\n";
+		std::cout << "Game modified!\n";
 	}
 	else {
-		std::cout << "Game not found! Please try again\n";
+		std::cout << "Game not found! Please try again!\n";
 	}
 	writeToDatabase();
 }
